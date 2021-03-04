@@ -20,6 +20,7 @@ class CreateCodesTable extends Migration
     {
         Schema::create('codes', function (Blueprint $table) {
             $table->id();
+            $table->boolean('active', true);
             $table->char('name', 100);
             $table->string('description', 1000);
             $table->char('code', 100);
@@ -34,6 +35,7 @@ class CreateCodesTable extends Migration
             ]);
 
             $code->created_at = Carbon::createFromTimeString('2021-03-'.rand(1,30).' 00:00:00');
+            $code->active = rand(0,1);
             $code->save();
         }
     }
